@@ -48,3 +48,13 @@ export const deletesingleproduct=async(id:string|number)=>{
         throw error.message
     }
 }
+export const createnewproductlocal=async({...productsdetails})=>{
+    console.log("here is the createnewproductlocal function ",productsdetails)
+    try {
+        const createnewproduct=await axios.post(`http://localhost:6000/posts`,productsdetails)
+        const watingform=await createnewproduct.data
+        return watingform
+    } catch (error:any) {
+        throw error.message 
+    }
+}

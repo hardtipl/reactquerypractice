@@ -8,7 +8,7 @@ const Loadpage = lazy(() => import('./Loadingpage'))
 
 const Product = () => {
     const { productid } = useParams()
-    const { data:productinfo, isError, isLoading }: any = useQuery(['single product', productid], () => fetchsingleproduct(productid), {
+    const { data:productinfo, isError, isLoading, isFetching} = useQuery(['single product', productid], () => fetchsingleproduct(productid), {
         // in here when the enable: false then there will never make an api call in react because this will not call the api call
         // here is passes Boolean because of the productid till product id is not recived don't make an api call
         enabled: Boolean(productid)
@@ -28,6 +28,9 @@ const Product = () => {
             console.log("here is the list of destructures ", _id, Productname, Productshortdescription)
     return (
         <div>
+            {isFetching?
+        <p>Data is being fetched in background</p>    :""
+        }
             <div>
                 <div>
                     <label >Product Name:</label>
